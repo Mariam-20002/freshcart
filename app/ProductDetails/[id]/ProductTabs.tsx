@@ -121,7 +121,7 @@ export default function ProductTabs({
         <div className="bg-white p-8 rounded-xl border space-y-10">
           <div className="flex items-center gap-6">
             {/* LEFT */}
-            <div className="w-[150px]flex flex-col items-center gap-1 text-center">
+            <div className="w-[150px] flex flex-col items-center gap-1 text-center">
               <h2 className="text-4xl font-bold text-gray-900">
                 {average.toFixed(1)}
               </h2>
@@ -155,7 +155,6 @@ export default function ProductTabs({
                   const count = reviews.filter((r) => r.rating === star).length;
                   percent = (count / reviews.length) * 100;
                 } else {
-                  // fallback زي FreshCart
                   if (star === 5) percent = 25;
                   else if (star === 4) percent = 60;
                   else if (star === 3) percent = 25;

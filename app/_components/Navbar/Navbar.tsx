@@ -388,16 +388,27 @@ export function NavigationMenuDemo() {
 
               {/*  mobile only */}
               <div className="flex md:hidden items-center gap-3">
-                <Link href="/wishlist">
+                <Link href="/wishlist" className="relative">
                   <Heart size={20} className="text-gray-600" />
+
+                  {session && (
+                    <span className="absolute -top-2 -right-2 min-w-[16px] h-[16px] px-1 rounded-full bg-red-500 text-white text-[9px] font-semibold flex items-center justify-center">
+                      {wishlistData?.count || 0}
+                    </span>
+                  )}
                 </Link>
 
-                <Link href="/cart">
+                <Link href="/cart" className="relative">
                   <ShoppingCart size={20} className="text-gray-600" />
+
+                  {session && (
+                    <span className="absolute -top-2 -right-2 min-w-[16px] h-[16px] px-1 rounded-full bg-green-600 text-white text-[9px] font-semibold flex items-center justify-center">
+                      {cartData?.numOfCartItems || 0}
+                    </span>
+                  )}
                 </Link>
 
                 {/* menu icon */}
-
                 <button
                   onClick={() => setIsMobileMenuOpen(true)}
                   className="bg-green-600 text-white p-2 rounded-full"
@@ -439,10 +450,24 @@ export function NavigationMenuDemo() {
                   <input
                     type="text"
                     placeholder="Search products..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleSearch();
+                        setIsMobileMenuOpen(false);
+                      }
+                    }}
                     className="flex-1 px-4 py-3 outline-none text-sm"
                   />
 
-                  <button className="bg-green-600 px-4 py-3">
+                  <button
+                    onClick={() => {
+                      handleSearch();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="bg-green-600 px-4 py-3"
+                  >
                     <Search className="text-white" size={18} />
                   </button>
                 </div>

@@ -189,7 +189,7 @@ export default function Cart() {
                       </div>
                     </div>
                   )}
-                  <div className="flex items-center justify-between gap-8">
+                  <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between md:gap-8">
                     {/* LEFT SIDE */}
                     <div className="flex items-center gap-4 flex-1 min-w-0">
                       {/* IMAGE + STOCK */}

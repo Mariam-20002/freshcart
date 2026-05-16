@@ -90,7 +90,7 @@ export default async function Products({
         {data.length === 0 ? (
           <p className="text-center text-gray-500 py-20">No products found</p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {data.map((prod: ProductInterface) => (
               <ProductItem key={prod._id} prod={prod} />
             ))}

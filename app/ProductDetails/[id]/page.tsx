@@ -135,7 +135,7 @@ export default async function page({
 
           {/*  Buttons */}
           <div className="space-y-3 mt-3  ">
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <ButtonCom
                 id={id}
                 product={data}
@@ -174,7 +174,7 @@ export default async function page({
               </button>
             </div>
           </div>
-          <div className="flex justify-between items-center gap-6 mt-4">
+          <div className="flex flex-col gap-4 mt-4 sm:flex-row sm:justify-between sm:items-center">
             {/*  Free Delivery */}
             <div className="flex items-center gap-3">
               <div className="bg-green-100 text-green-600 p-3 rounded-full">

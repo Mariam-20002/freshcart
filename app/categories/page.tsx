@@ -34,7 +34,7 @@ export default async function CategoriesPage() {
             {data.map((cat) => (
               <Link
                 key={cat._id}
-                href={`/products?category=${cat._id}`}
+                href={`/categories/${cat._id}`}
                 className="group bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-xl hover:-translate-y-1 transition duration-300 text-center"
               >
                 {/* Image */}
