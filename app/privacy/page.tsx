@@ -303,7 +303,7 @@ export default function PrivacyPage() {
                       </div>
 
                       <p className="text-[14px] leading-7 text-[#475569]">
-                        {item.title && (
+                        {"title" in item && item.title && (
                           <span className="font-bold text-[#0F172A]">
                             {item.title}:{" "}
                           </span>
