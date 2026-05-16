@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 import WrapperCom from "./_components/WrapperCom";
 import TansTackProvider from "./providers/TansTackProvider";
 import AuthProvider from "./providers/AuthProvider";
+import { Suspense } from "react";
 
 const exo = Exo({
   subsets: ["latin"],
@@ -26,15 +27,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${exo.className} `}>
-        {/* navbar */}
+      <body className={`${exo.className}`}>
         <AuthProvider>
           <TansTackProvider>
-            <WrapperCom>
-              <NavigationMenuDemo />
-            </WrapperCom>
+            <Suspense fallback={<div>Loading...</div>}>
+              <WrapperCom>
+                <NavigationMenuDemo />
+              </WrapperCom>
 
-            <main className="pt-[75px] md:pt-[120px]">{children}</main>
+              <main className="pt-[75px] md:pt-[120px]">{children}</main>
+            </Suspense>
 
             <Toaster />
 
