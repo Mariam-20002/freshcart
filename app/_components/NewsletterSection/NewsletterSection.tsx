@@ -13,7 +13,7 @@ export default function NewsletterSection() {
   const [success, setSuccess] = useState(false);
 
   // validation cleaner
-  const validateEmail = (value) => {
+  const validateEmail = (value: string) => {
     if (!value) return "Email is required";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       return "Invalid email format";
