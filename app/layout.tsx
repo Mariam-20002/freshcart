@@ -9,6 +9,7 @@ import WrapperCom from "./_components/WrapperCom";
 import TansTackProvider from "./providers/TansTackProvider";
 import AuthProvider from "./providers/AuthProvider";
 import { Suspense } from "react";
+import Loading from "./_components/Loading/Loading";
 
 const exo = Exo({
   subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body className={`${exo.className}`}>
         <AuthProvider>
           <TansTackProvider>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loading />}>
               <WrapperCom>
                 <NavigationMenuDemo />
               </WrapperCom>
