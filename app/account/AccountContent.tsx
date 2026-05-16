@@ -118,7 +118,7 @@ export default function AccountContent({ user }: { user?: AccountUser }) {
             {activeTab === "settings" ? (
               <SettingsPanel user={accountUser} />
             ) : (
-              <AddressesPanel user={accountUser} />
+              <AddressesPanel />
             )}
           </div>
         </section>
