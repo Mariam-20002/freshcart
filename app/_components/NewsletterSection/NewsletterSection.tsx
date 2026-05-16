@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import { CheckCircle, Mail } from "lucide-react";
 import { FaLeaf, FaTruck, FaTag } from "react-icons/fa6";
 import { useEffect, useState } from "react";
@@ -31,7 +31,7 @@ export default function NewsletterSection() {
     }
   }, [success]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validationError = validateEmail(email);
