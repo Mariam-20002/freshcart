@@ -23,12 +23,8 @@ import ButtonCom from "@/app/_components/ButtonCom";
 import ButtonWish from "@/app/_components/ButtonWish";
 import { getWishlist } from "@/app/Apis/wishList/Wishlist.api";
 
-export default async function page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const id = (await params).id;
+export default async function page({ params }: { params: { id: string } }) {
+  const id = params.id;
 
   const data = await getSingleProducts(id);
 
