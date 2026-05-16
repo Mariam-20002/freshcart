@@ -118,8 +118,97 @@ export default function GuestWishlistPage() {
             </div>
           </div>
 
+          <div className="flex flex-col gap-4 md:hidden">
+            {products.map((item) => (
+              <div
+                key={item._id}
+                className="rounded-2xl border bg-white p-4 shadow-sm"
+              >
+                {/* top */}
+                <div className="flex items-start gap-4">
+                  <Link
+                    href={`/ProductDetails/${item._id}`}
+                    className="relative w-20 h-20 shrink-0 overflow-hidden rounded-xl border bg-[#F9FAFB]"
+                  >
+                    <Image
+                      src={item.imageCover}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </Link>
+
+                  <div className="flex-1 min-w-0">
+                    <Link href={`/ProductDetails/${item._id}`}>
+                      <h3 className="text-[15px] font-medium leading-5 line-clamp-2 text-[#101828]">
+                        {item.title}
+                      </h3>
+                    </Link>
+
+                    <p className="mt-1 text-sm text-[#98A2B3]">
+                      {item.category.name}
+                    </p>
+                  </div>
+                </div>
+
+                {/* price + status */}
+                <div className="mt-4 flex flex-col items-start gap-2">
+                  {/* price */}
+                  <p className="text-[15px] text-[#344054]">
+                    Price:
+                    <span className="ml-2 font-bold text-[#101828]">
+                      {item.priceAfterDiscount ?? item.price} EGP
+                    </span>
+                  </p>
+
+                  {/* status */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[15px] text-[#344054]">Status:</span>
+
+                    {cartProductsIds.includes(item._id) ? (
+                      <span className="rounded-full bg-green-100 px-3 py-1 text-xs text-green-700">
+                        In Cart
+                      </span>
+                    ) : (
+                      <span className="rounded-full bg-green-100 px-3 py-1 text-xs text-green-700">
+                        In Stock
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* actions */}
+                <div className="mt-4 flex items-center gap-3">
+                  {cartProductsIds.includes(item._id) ? (
+                    <Link
+                      href="/cart"
+                      className="flex-1 h-11 rounded-xl bg-[#F3F4F6] flex items-center justify-center font-medium text-[#111827]"
+                    >
+                      ✓ View Cart
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => handleAddToCart(item)}
+                      className="flex-1 h-11 rounded-xl bg-green-600 text-white flex items-center justify-center gap-2 font-medium"
+                    >
+                      <ShoppingCart size={18} />
+                      Add To Cart
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="w-11 h-11 shrink-0 rounded-xl border border-red-200 bg-red-50 text-red-500 flex items-center justify-center"
+                  >
+                    <Trash2 size={18} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
           {/* Wishlist Table */}
-          <div className="overflow-hidden rounded-xl border mt-10 bg-white shadow-sm">
+          <div className="hidden md:block overflow-hidden rounded-xl border mt-10 bg-white shadow-sm">
             <Table>
               {/* table header */}
               <TableHeader className="bg-muted/50">
