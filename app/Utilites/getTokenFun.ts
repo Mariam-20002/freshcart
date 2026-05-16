@@ -2,18 +2,18 @@ import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
 export async function getTokenFn() {
-  // get cookies
   const cookieStore = await cookies();
 
-  // get token from cookies
-  const nextAuthToken = cookieStore.get("next-auth.session-token")?.value;
+  const token =
+    cookieStore.get("__Secure-next-auth.session-token")?.value ||
+    cookieStore.get("next-auth.session-token")?.value;
 
-  // decode token
-  const decodeCookie = await decode({
+  if (!token) return null;
+
+  const decoded = await decode({
     secret: process.env.NEXTAUTH_SECRET!,
-    token: nextAuthToken,
+    token,
   });
 
-  // return user token
-  return decodeCookie?.token;
+  return decoded?.token;
 }
