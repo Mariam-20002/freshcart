@@ -1,4 +1,7 @@
-import {getCategories,type CategoryInterface,} from "@/app/Apis/categories.api";
+import {
+  getCategories,
+  type CategoryInterface,
+} from "@/app/Apis/categories.api";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +28,7 @@ export default async function Categories() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {data.map((cat) => (
-          <Link href={`/categories/${cat._id}`} key={cat._id}>
+          <Link href={`/products?category=${cat._id}`} key={cat._id}>
             <CatItem cat={cat} />
           </Link>
         ))}
