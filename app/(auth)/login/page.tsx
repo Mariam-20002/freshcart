@@ -15,7 +15,7 @@ export default function Page() {
             <div className="mb-8">
               <div className="relative w-full aspect-[616/384] overflow-hidden rounded-2xl border border-gray-100 shadow-[0_8px_20px_rgba(0,0,0,0.06)]">
                 <Image
-                  src="/assets/login.png"
+                  src="/assets/Login.png"
                   alt="shopping"
                   fill
                   className="object-cover"
