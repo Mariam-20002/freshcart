@@ -23,8 +23,12 @@ import ButtonCom from "@/app/_components/ButtonCom";
 import ButtonWish from "@/app/_components/ButtonWish";
 import { getWishlist } from "@/app/Apis/wishList/Wishlist.api";
 
-export default async function page({ params }: { params: { id: string } }) {
-  const id = params.id;
+export default async function page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const id = (await params).id;
 
   const data = await getSingleProducts(id);
 
@@ -40,9 +44,15 @@ export default async function page({ params }: { params: { id: string } }) {
     (item: ProductInterface) => item._id !== data._id,
   );
 
-  const wishlist = await getWishlist();
+  let wishlistIds: string[] = [];
 
-  const wishlistIds = wishlist?.data?.map((item) => item._id) || [];
+  try {
+    const wishlist = await getWishlist();
+
+    wishlistIds = wishlist?.data?.map((item) => item._id) || [];
+  } catch (error) {
+    wishlistIds = [];
+  }
 
   const isWishlisted = wishlistIds.includes(data._id);
   return (
