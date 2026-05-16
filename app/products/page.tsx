@@ -8,6 +8,7 @@ import ProductItem from "../_components/ProductItem/ProductItem";
 import Link from "next/link";
 import { FaFolderOpen } from "react-icons/fa6";
 import { getCategoryById } from "@/app/Apis/categories.api";
+import type { ProductInterface } from "../interfaces/Product.interface";
 export default async function Products({
   searchParams,
 }: {
@@ -90,7 +91,7 @@ export default async function Products({
           <p className="text-center text-gray-500 py-20">No products found</p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {data.map((prod) => (
+            {data.map((prod: ProductInterface) => (
               <ProductItem key={prod._id} prod={prod} />
             ))}
           </div>
