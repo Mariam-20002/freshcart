@@ -8,7 +8,7 @@ export async function clearCart() {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // clear full cart

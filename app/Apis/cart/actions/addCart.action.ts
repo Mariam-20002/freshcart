@@ -8,7 +8,7 @@ export async function addToCart(productId: string) {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // add product to cart

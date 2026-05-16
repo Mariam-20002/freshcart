@@ -8,7 +8,7 @@ export async function addToWishlist(productId: string) {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // add product to wishlist
@@ -20,7 +20,7 @@ export async function addToWishlist(productId: string) {
       "Content-type": "application/json",
     },
   });
-  
+
   // response
   const payload = await data.json();
 

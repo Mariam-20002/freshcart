@@ -28,7 +28,7 @@ export async function getAddresses(): Promise<AddressRes | null> {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // fetch addresses

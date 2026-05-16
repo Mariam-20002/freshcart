@@ -9,7 +9,7 @@ export async function getWishlist(): Promise<WishlistRes | null> {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // add product to wishlist

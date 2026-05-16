@@ -12,7 +12,7 @@ export async function updateAddress(
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // update address

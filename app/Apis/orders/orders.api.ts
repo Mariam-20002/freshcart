@@ -6,7 +6,7 @@ export async function getUserOrders(userId: string) {
   const token = await getTokenFn();
 
   if (!token) {
-    throw new Error("Unauthorized!");
+    return null;
   }
 
   const data = await fetch(

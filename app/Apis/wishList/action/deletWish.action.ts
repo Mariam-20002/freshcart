@@ -6,7 +6,7 @@ export async function deleteWishlistItem(productId: string) {
   const token = await getTokenFn();
 
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   const response = await fetch(`${process.env.API}wishlist/${productId}`, {

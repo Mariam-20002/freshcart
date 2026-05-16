@@ -8,7 +8,7 @@ export async function delteItemCart(productId: string) {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   //delet product to cart

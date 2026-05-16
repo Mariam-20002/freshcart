@@ -15,7 +15,7 @@ export async function createCashOrder(
   const token = await getTokenFn();
 
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   const data = await fetch(

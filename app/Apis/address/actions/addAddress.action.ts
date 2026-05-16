@@ -9,7 +9,7 @@ export async function addAddress(address: AddressFormInterface) {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // add address

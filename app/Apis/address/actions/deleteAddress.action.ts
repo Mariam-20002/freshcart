@@ -8,7 +8,7 @@ export async function deleteAddress(addressId: string) {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // delete address

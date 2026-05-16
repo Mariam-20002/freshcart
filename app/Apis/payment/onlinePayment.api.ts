@@ -1,4 +1,4 @@
-'use server'
+"use server";
 import { getTokenFn } from "@/app/Utilites/getTokenFun";
 
 interface shippingAddressInterface {
@@ -14,7 +14,7 @@ export async function onlinePayment(
   const token = await getTokenFn();
 
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   const data = await fetch(
@@ -32,7 +32,7 @@ export async function onlinePayment(
       }),
     },
   );
-  if (!data.ok) throw new Error("unauthorized!");
+  if (!data.ok) return null;
 
   const res = await data.json();
   return res;

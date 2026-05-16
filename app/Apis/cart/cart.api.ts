@@ -1,4 +1,3 @@
-
 import type { CartRes } from "@/app/cart/interfaces/cart.interfaces";
 import { getTokenFn } from "@/app/Utilites/getTokenFun";
 
@@ -8,7 +7,7 @@ export async function getCart(): Promise<CartRes | null> {
 
   // check token
   if (!token) {
-    throw new Error("unauthorized!");
+    return null;
   }
 
   // add product to cart
