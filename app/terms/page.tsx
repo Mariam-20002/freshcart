@@ -272,7 +272,7 @@ export default function TermsPage() {
                 <div className="space-y-4">
                   {article.items.map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      {item.id && (
+                      {"id" in item && item.id && (
                         <div className="flex h-7 min-w-[28px] items-center justify-center rounded-lg bg-[#F0FDF4] text-xs font-bold text-[#22C55E]">
                           {item.id}
                         </div>
