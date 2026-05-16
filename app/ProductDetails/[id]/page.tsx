@@ -44,15 +44,9 @@ export default async function page({
     (item: ProductInterface) => item._id !== data._id,
   );
 
-  let wishlistIds: string[] = [];
+  const wishlist = await getWishlist();
 
-  try {
-    const wishlist = await getWishlist();
-
-    wishlistIds = wishlist?.data?.map((item) => item._id) || [];
-  } catch (error) {
-    wishlistIds = [];
-  }
+  const wishlistIds = wishlist?.data?.map((item) => item._id) || [];
 
   const isWishlisted = wishlistIds.includes(data._id);
   return (

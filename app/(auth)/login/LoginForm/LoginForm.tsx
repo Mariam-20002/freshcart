@@ -67,7 +67,7 @@ export default function LoginForm() {
 
         localStorage.removeItem("guestWishlist");
 
-        window.location.href = "/cart";
+        window.location.href = "/";
 
         reset();
       } else {
