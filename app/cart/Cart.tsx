@@ -102,6 +102,13 @@ export default function Cart() {
     };
   }, [showClearModal]);
 
+
+
+  const totalPrice = data?.data?.totalCartPrice || 0;
+  const freeShippingTarget = 500;
+  const remaining = freeShippingTarget - totalPrice;
+  const progress = Math.min((totalPrice / freeShippingTarget) * 100, 100);
+
   return (
     <div className="container max-w-[1536px] mx-auto px-4 xl:px-6 min-h-screen py-10">
       {/* breadcrumb */}
@@ -172,11 +179,10 @@ export default function Cart() {
               {data?.data?.products.map((item) => (
                 <div
                   key={item._id}
-                  className={`relative rounded-2xl border border-[#EAECF0] bg-white px-6 py-5 shadow-sm transition-all duration-300 ${
-                    loadingItem === item.product._id
-                      ? "opacity-70 scale-[0.99]"
-                      : ""
-                  }`}
+                  className={`relative rounded-2xl border border-[#EAECF0] bg-white px-6 py-5 shadow-sm transition-all duration-300 ${loadingItem === item.product._id
+                    ? "opacity-70 scale-[0.99]"
+                    : ""
+                    }`}
                 >
                   {loadingItem === item.product._id && (
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
@@ -394,22 +400,48 @@ export default function Cart() {
               </div>
 
               <div className="p-5">
-                {/* free shipping */}
-                <div className="bg-[#F3FAF5] rounded-[18px] px-4 py-4 flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-full bg-[#DDF6E5] flex items-center justify-center text-2xl shrink-0">
-                    <Truck size={24} className="text-[#16A34A]" />
-                  </div>
+                {/* shipping */}
+                {totalPrice >= 500 ? (
+                  <div className="bg-[#F3FAF5] border border-[#DCFCE7] rounded-[18px] px-4 py-4 flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-full bg-[#DDF6E5] shadow-sm flex items-center justify-center shrink-0">
+                      <Truck size={24} className="text-[#16A34A]" />
+                    </div>
 
-                  <div>
-                    <h3 className="text-[18px] font-semibold text-[#15803D] leading-none">
-                      Free Shipping!
-                    </h3>
+                    <div>
+                      <h3 className="text-[18px] font-bold text-[#15803D] leading-none">
+                        Free Shipping!
+                      </h3>
 
-                    <p className="text-[#16A34A] text-sm mt-2">
-                      You qualify for free delivery
-                    </p>
+                      <p className="text-[#16A34A] text-sm mt-2">
+                        You qualify for free delivery
+                      </p>
+                    </div>
+
                   </div>
-                </div>
+                ) : (
+                  
+                  <div className="bg-[#FFF8E8] border border-[#FDE7B0] rounded-[18px] px-4 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-[#FFE7B3] flex items-center justify-center shrink-0">
+                        <Truck size={20} className="text-[#F59E0B]" />
+                      </div>
+
+                      <div className="flex-1">
+                        <h3 className="text-[16px] font-semibold text-[#92400E]">
+                          Add {remaining} EGP for free shipping
+                        </h3>
+
+                        {/* progress */}
+                        <div className="w-full h-2 bg-[#FDE7B0] rounded-full mt-3 overflow-hidden">
+                          <div
+                            className="h-full bg-[#F59E0B] rounded-full transition-all duration-500"
+                            style={{ width: `${progress}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* prices */}
                 <div className="mt-5 space-y-2.5">
@@ -465,7 +497,7 @@ export default function Cart() {
 
                 {/* checkout */}
                 <Link
-                   href={`/Checkout/${data?.cartId}`}
+                  href={`/Checkout/${data?.cartId}`}
                   className="mt-6 w-full h-14 rounded-2xl bg-gradient-to-r from-[#16A34A] to-[#15803D]
                    transition text-white text-[18px] font-semibold shadow-md cursor-pointer
                   flex items-center justify-center gap-2 hover:opacity-95"

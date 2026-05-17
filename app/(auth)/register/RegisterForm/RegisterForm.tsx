@@ -1,4 +1,5 @@
 "use client";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import Link from "next/link";
 import {
   Field,
@@ -37,6 +38,9 @@ export default function RegisterForm() {
       terms: false,
     },
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRePassword, setShowRePassword] = useState(false);
 
   async function handleRegister(data: registerSchemaType) {
     setLoading(true);
@@ -173,12 +177,22 @@ export default function RegisterForm() {
                 Password<span className="text-red-500">*</span>
               </FieldLabel>
 
-              <Input
-                {...field}
-                type="password"
-                placeholder="********"
-                className="h-11 rounded-lg"
-              />
+              <div className="relative">
+                <Input
+                  {...field}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="********"
+                  className="h-11 rounded-lg pr-10"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+                >
+                  {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                </button>
+              </div>
 
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
 
@@ -200,6 +214,7 @@ export default function RegisterForm() {
                   {password.length < 8 && "Must be at least 8 characters"}
                   {!/[A-Z]/.test(password) && " • Add uppercase letter"}
                   {!/[0-9]/.test(password) && " • Add number"}
+                  {!/[#?!@$%^&*-]/.test(password) && " • Add special character"}
                 </p>
               </div>
             </Field>
@@ -214,12 +229,28 @@ export default function RegisterForm() {
               <FieldLabel className="text-sm font-medium">
                 Confirm Password<span className="text-red-500">*</span>
               </FieldLabel>
-              <Input
-                {...field}
-                type="password"
-                placeholder="********"
-                className="h-11 rounded-lg"
-              />
+
+              <div className="relative">
+                <Input
+                  {...field}
+                  type={showRePassword ? "text" : "password"}
+                  placeholder="********"
+                  className="h-11 rounded-lg pr-10"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowRePassword(!showRePassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+                >
+                  {showRePassword ? (
+                    <FiEyeOff size={18} />
+                  ) : (
+                    <FiEye size={18} />
+                  )}
+                </button>
+              </div>
+
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
@@ -292,11 +323,10 @@ export default function RegisterForm() {
           type="submit"
           disabled={!terms || isLoading}
           className={`w-full py-3 rounded-lg font-medium mt-2 transition flex items-center justify-center gap-2
-    ${
-      !terms || isLoading
-        ? "bg-green-300 cursor-not-allowed opacity-70"
-        : "bg-green-600 text-white hover:bg-green-700"
-    }
+    ${!terms || isLoading
+              ? "bg-green-300 cursor-not-allowed opacity-70"
+              : "bg-green-600 text-white hover:bg-green-700"
+            }
   `}
         >
           {isLoading ? (

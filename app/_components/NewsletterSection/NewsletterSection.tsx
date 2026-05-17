@@ -48,8 +48,8 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="mt-3">
-      <div className="max-w-[1536px] mx-auto mx-auto">
+    <section className="py-10">
+      <div className="max-w-[1536px] mx-auto ">
         <div
           className="rounded-[40px] p-6 md:p-10 
           bg-gradient-to-br from-[#d9fbe8] via-[#ecfdf5] to-[#f8fafc]
@@ -120,15 +120,14 @@ export default function NewsletterSection() {
 
                 <button
                   type="submit"
-                  disabled={!email && !success}
+                  disabled={!email || success}
                   className={`px-6 py-3 rounded-xl text-white transition-all duration-300 ease-in-out flex items-center gap-2 justify-center                    
-                 ${
-                   success
-                     ? "bg-green-500 scale-105 shadow-[0_6px_20px_rgba(34,197,94,0.35)]"
-                     : !email
-                       ? "bg-green-300 cursor-not-allowed"
-                       : "bg-green-600 hover:bg-green-700"
-                 }`}
+                 ${success
+                      ? "bg-green-500 scale-105 shadow-[0_6px_20px_rgba(34,197,94,0.35)]"
+                      : !email
+                        ? "bg-green-300 cursor-not-allowed"
+                        : "bg-green-600 hover:bg-green-700"
+                    }`}
                 >
                   {success ? (
                     <>
