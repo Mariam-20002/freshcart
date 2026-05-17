@@ -63,8 +63,8 @@ export default function MySlider({
                   index === 0 ? "slide-up" : ""
                 }`}
               >
-                <div className="max-w-[1536px] mx-auto px-4 md:px-6 lg:px-8 w-full">
-                  <div className="max-w-[700px] text-white space-y-4">
+                <div className="max-w-[1536px] mx-auto px-8 md:px-12 lg:px-16 w-full">
+                  <div className="max-w-[700px] text-white space-y-4 ml-4 md:ml-8">
                     <h2 className="text-xl md:text-[30px] font-bold leading-[36px] max-w-[380px]">
                       {item.title}
                     </h2>
@@ -99,13 +99,13 @@ export default function MySlider({
       </Swiper>
 
       {/* arrows */}
-      <div className="custom-prev absolute left-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer">
+      <div className="custom-prev hidden md:block absolute left-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer">
         <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-md hover:bg-white transition">
           <ChevronLeft className="text-[#00C950] w-5 h-5" />
         </div>
       </div>
 
-      <div className="custom-next absolute right-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer">
+      <div className="custom-next hidden md:block absolute right-5 top-1/2 -translate-y-1/2 z-10 cursor-pointer">
         <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-md hover:bg-white transition">
           <ChevronRight className="text-[#00C950] w-5 h-5" />
         </div>

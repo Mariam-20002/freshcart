@@ -149,11 +149,10 @@ export function NavigationMenuDemo() {
     <div className="w-full bg-white ">
       {/*  Top Bar */}
       <div
-        className={`hidden md:flex fixed top-0 left-0 w-full z-50 bg-white border-b transition-all duration-100 ${
-          hideTopBar
-            ? "-translate-y-full opacity-0"
-            : "translate-y-0 opacity-100"
-        }`}
+        className={`hidden md:flex fixed top-0 left-0 w-full z-50 bg-white border-b transition-all duration-100 ${hideTopBar
+          ? "-translate-y-full opacity-0"
+          : "translate-y-0 opacity-100"
+          }`}
       >
         <div className="max-w-[1536px] mx-auto w-full px-5 flex justify-between items-center py-2 text-sm text-gray-500">
           {/* left */}
@@ -237,9 +236,8 @@ export function NavigationMenuDemo() {
 
       {/*  Navbar */}
       <div
-        className={`fixed left-0 w-full z-40 bg-white shadow-md transition-all duration-300 ${
-          hideTopBar ? "top-0" : "top-0 md:top-[37px]"
-        }`}
+        className={`fixed left-0 w-full z-40 bg-white shadow-md transition-all duration-300 ${hideTopBar ? "top-0" : "top-0 md:top-[37px]"
+          }`}
       >
         <NavigationMenu
           viewport={false}
@@ -302,11 +300,10 @@ export function NavigationMenuDemo() {
                             <Link
                               key={cat._id}
                               href={`/products?category=${cat._id}`}
-                              className={`block text-sm transition ${
-                                activeCategory === cat._id
-                                  ? "text-green-600 font-bold"
-                                  : "text-gray-700 hover:text-green-600"
-                              }`}
+                              className={`block text-sm transition ${activeCategory === cat._id
+                                ? "text-green-600 font-bold"
+                                : "text-gray-700 hover:text-green-600"
+                                }`}
                             >
                               {cat.name}
                             </Link>
@@ -479,11 +476,7 @@ export function NavigationMenuDemo() {
                     key={link.path}
                     href={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`capitalize px-4 py-3 rounded-xl text-base font-medium transition ${
-                      link.element === "categories"
-                        ? "bg-green-50 text-green-600"
-                        : "text-gray-800 hover:bg-gray-50 hover:text-green-600"
-                    }`}
+                    className="capitalize px-4 py-3 rounded-xl text-base font-medium transition text-gray-800 hover:bg-gray-50 hover:text-green-600"
                   >
                     {link.element}
                   </Link>
@@ -496,23 +489,41 @@ export function NavigationMenuDemo() {
                 <Link
                   href="/wishlist"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-4 text-gray-800 hover:text-green-600"
+                  className="flex items-center justify-between rounded-2xl bg-green-50 px-4 py-3 text-gray-800 hover:text-green-600"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-red-50">
-                    <Heart size={20} className="text-red-500" />
-                  </span>
-                  <span className="text-base font-medium">Wishlist</span>
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-red-50">
+                      <Heart size={20} className="text-red-500" />
+                    </span>
+
+                    <span className="text-base font-medium">Wishlist</span>
+                  </div>
+
+                  {session && (
+                    <span className="flex items-center justify-center min-w-[20px] h-[20px] px-1 rounded-full bg-red-500 text-white text-[10px] font-semibold">
+                      {wishlistData?.count || 0}
+                    </span>
+                  )}
                 </Link>
 
                 <Link
                   href="/cart"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-4 text-gray-800 hover:text-green-600"
+                  className="flex items-center justify-between rounded-2xl px-4 py-3 text-gray-800 hover:text-green-600"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-green-50">
-                    <ShoppingCart size={20} className="text-green-600" />
-                  </span>
-                  <span className="text-base font-medium">Cart</span>
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-green-50">
+                      <ShoppingCart size={20} className="text-green-600" />
+                    </span>
+
+                    <span className="text-base font-medium">Cart</span>
+                  </div>
+
+                  {session && (
+                    <span className="flex items-center justify-center min-w-[20px] h-[20px] px-1 rounded-full bg-green-600 text-white text-[10px] font-semibold">
+                      {cartData?.numOfCartItems || 0}
+                    </span>
+                  )}
                 </Link>
               </div>
 
