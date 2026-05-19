@@ -1,5 +1,5 @@
 import { getSingleProducts } from "@/app/Apis/singleProduct.api";
-import { getProductReviews } from "@/app/Apis/reviews.api";
+import { getProductReviews } from "@/app/_components/reviews/reviews.api";
 import ProductItem from "@/app/_components/ProductItem/ProductItem";
 import type { ProductInterface } from "@/app/interfaces/Product.interface";
 
@@ -33,6 +33,7 @@ export default async function page({
   const data = await getSingleProducts(id);
 
   const reviews = await getProductReviews(id);
+  console.log("REVIEWS DATA:", reviews);
 
   const res = await fetch(
     `https://ecommerce.routemisr.com/api/v1/products?category=${data.category._id}`,
