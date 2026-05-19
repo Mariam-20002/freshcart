@@ -11,6 +11,10 @@ export default function SearchInput() {
   const [search, setSearch] = useState(searchParams.get("q") || "");
 
   useEffect(() => {
+    setSearch(searchParams.get("q") || "");
+  }, [searchParams]);
+
+  useEffect(() => {
     const delay = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString());
 

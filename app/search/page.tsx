@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Search, SlidersHorizontal } from "lucide-react";
 
-import { searchProducts } from "../_components/Products/Products";
+import { searchProducts } from "../Apis/search.api";
 import { getAllProducts } from "../Apis/Products.api";
 
 import { getCategories } from "../Apis/categories.api";
@@ -141,102 +141,114 @@ export default async function SearchPage({
               selectedBrands.length > 0 ||
               q ||
               hasPriceFilter) && (
-              <div className="mb-6 flex flex-wrap items-center gap-3">
-                <span className="flex items-center gap-2 text-sm font-medium text-gray-500">
-                  <SlidersHorizontal size={16} />
-                  Active:
-                </span>
+                <div className="mb-6 flex flex-wrap items-center gap-3">
+                  <span className="flex items-center gap-2 text-sm font-medium text-gray-500">
+                    <SlidersHorizontal size={16} />
+                    Active:
+                  </span>
 
-                {/* Search */}
-                {q && (
-                  <div className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                    {q}
-                  </div>
-                )}
-
-                {/* Categories */}
-                {selectedCategories.map((id) => {
-                  const category = categories.find((c) => c._id === id);
-
-                  return (
+                  {/* Search */}
+                  {q && (
                     <Link
-                      key={id}
                       href={{
                         pathname: "/search",
                         query: {
-                          ...Object.fromEntries([
-                            ...new URLSearchParams(params as any),
-                          ]),
-                          category: selectedCategories.filter(
-                            (cat) => cat !== id,
+                          ...Object.fromEntries(
+                            Object.entries(params).filter(([key]) => key !== "q"),
                           ),
                         },
                       }}
-                      className="flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700"
+                      className="flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700"
                     >
-                      {category?.name}
+                      {q}
 
                       <span className="text-lg leading-none">×</span>
                     </Link>
-                  );
-                })}
+                  )}
 
-                {/* Brands */}
-                {selectedBrands.map((id) => {
-                  const brand = brands.find((b) => b._id === id);
+                  {/* Categories */}
+                  {selectedCategories.map((id) => {
+                    const category = categories.find((c) => c._id === id);
 
-                  return (
+                    return (
+                      <Link
+                        key={id}
+                        href={{
+                          pathname: "/search",
+                          query: {
+                            ...Object.fromEntries([
+                              ...new URLSearchParams(params as any),
+                            ]),
+                            category: selectedCategories.filter(
+                              (cat) => cat !== id,
+                            ),
+                          },
+                        }}
+                        className="flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700"
+                      >
+                        {category?.name}
+
+                        <span className="text-lg leading-none">×</span>
+                      </Link>
+                    );
+                  })}
+
+                  {/* Brands */}
+                  {selectedBrands.map((id) => {
+                    const brand = brands.find((b) => b._id === id);
+
+                    return (
+                      <Link
+                        key={id}
+                        href={{
+                          pathname: "/search",
+                          query: {
+                            ...Object.fromEntries([
+                              ...new URLSearchParams(params as any),
+                            ]),
+                            brand: selectedBrands.filter((b) => b !== id),
+                          },
+                        }}
+                        className="flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 text-sm font-medium text-purple-700"
+                      >
+                        {brand?.name}
+
+                        <span className="text-lg leading-none">×</span>
+                      </Link>
+                    );
+                  })}
+
+                  {/* Price */}
+                  {hasPriceFilter && (
                     <Link
-                      key={id}
                       href={{
                         pathname: "/search",
                         query: {
-                          ...Object.fromEntries([
-                            ...new URLSearchParams(params as any),
-                          ]),
-                          brand: selectedBrands.filter((b) => b !== id),
+                          ...Object.fromEntries(
+                            Object.entries(params).filter(
+                              ([key]) => key !== "minPrice" && key !== "maxPrice",
+                            ),
+                          ),
                         },
                       }}
-                      className="flex items-center gap-2 rounded-full bg-purple-100 px-4 py-2 text-sm font-medium text-purple-700"
+                      className="flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-700"
                     >
-                      {brand?.name}
-
+                      {params.minPrice || 0}
+                      {" - "}
+                      {params.maxPrice || "∞"} EGP
                       <span className="text-lg leading-none">×</span>
                     </Link>
-                  );
-                })}
+                  )}
 
-                {/* Price */}
-                {hasPriceFilter && (
+                  {/* Clear */}
                   <Link
-                    href={{
-                      pathname: "/search",
-                      query: {
-                        ...Object.fromEntries(
-                          Object.entries(params).filter(
-                            ([key]) => key !== "minPrice" && key !== "maxPrice",
-                          ),
-                        ),
-                      },
-                    }}
-                    className="flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-700"
+                    href="/search?q="
+                    className="text-sm font-medium text-gray-500 underline hover:text-red-500"
                   >
-                    {params.minPrice || 0}
-                    {" - "}
-                    {params.maxPrice || "∞"} EGP
-                    <span className="text-lg leading-none">×</span>
+                    Clear all
                   </Link>
-                )}
-
-                {/* Clear */}
-                <Link
-                  href="/search"
-                  className="text-sm font-medium text-gray-500 underline hover:text-red-500"
-                >
-                  Clear all
-                </Link>
-              </div>
-            )}
+                </div>
+              )}
             <ProductsView currentProducts={currentProducts}>
               <SortSelect />
             </ProductsView>
@@ -270,9 +282,8 @@ export default async function SearchPage({
                   {/* Prev */}
                   <Link
                     href={`/search?q=${q}&sort=${sort}&page=${currentPage - 1}`}
-                    className={`flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 transition hover:border-green-500 hover:text-green-600 ${
-                      currentPage === 1 ? "pointer-events-none opacity-40" : ""
-                    }`}
+                    className={`flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 transition hover:border-green-500 hover:text-green-600 ${currentPage === 1 ? "pointer-events-none opacity-40" : ""
+                      }`}
                   >
                     ←
                   </Link>
@@ -283,11 +294,10 @@ export default async function SearchPage({
                       <Link
                         key={page}
                         href={`/search?q=${q}&sort=${sort}&page=${page}`}
-                        className={`flex h-11 w-11 items-center justify-center rounded-xl text-sm font-semibold transition ${
-                          currentPage === page
-                            ? "bg-green-600 text-white shadow-md"
-                            : "border border-gray-200 bg-white text-gray-600 hover:border-green-500 hover:text-green-600"
-                        }`}
+                        className={`flex h-11 w-11 items-center justify-center rounded-xl text-sm font-semibold transition ${currentPage === page
+                          ? "bg-green-600 text-white shadow-md"
+                          : "border border-gray-200 bg-white text-gray-600 hover:border-green-500 hover:text-green-600"
+                          }`}
                       >
                         {page}
                       </Link>
@@ -297,11 +307,10 @@ export default async function SearchPage({
                   {/* Next */}
                   <Link
                     href={`/search?q=${q}&sort=${sort}&page=${currentPage + 1}`}
-                    className={`flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 transition hover:border-green-500 hover:text-green-600 ${
-                      currentPage === totalPages
-                        ? "pointer-events-none opacity-40"
-                        : ""
-                    }`}
+                    className={`flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 transition hover:border-green-500 hover:text-green-600 ${currentPage === totalPages
+                      ? "pointer-events-none opacity-40"
+                      : ""
+                      }`}
                   >
                     →
                   </Link>

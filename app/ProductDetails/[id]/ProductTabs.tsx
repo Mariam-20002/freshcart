@@ -40,11 +40,10 @@ export default function ProductTabs({
             onClick={() =>
               setActiveTab(tab as "details" | "reviews" | "shipping")
             }
-            className={`pb-2 capitalize ${
-              activeTab === tab
-                ? "border-b-2 border-green-600 text-green-600"
-                : "text-gray-500"
-            }`}
+            className={`pb-2 capitalize ${activeTab === tab
+              ? "border-b-2 border-green-600 text-green-600"
+              : "text-gray-500"
+              }`}
           >
             {tab === "reviews"
               ? `Reviews (${data.ratingsQuantity || 0})`
@@ -140,7 +139,7 @@ export default function ProductTabs({
                 ))}
               </div>
 
-              {/* عدد الريفيوز */}
+
               <p className="text-xs text-gray-400">
                 Based on {data.ratingsQuantity || reviews.length} reviews
               </p>
@@ -181,6 +180,19 @@ export default function ProductTabs({
                 );
               })}
             </div>
+          </div>
+
+          {/* REVIEW CTA */}
+          <div className="border-t pt-8 text-center">
+            <div className="text-5xl mb-3 text-gray-300">☆</div>
+
+            <p className="text-sm text-gray-500 mb-3">
+              Customer reviews will be displayed here.
+            </p>
+
+            <button className="text-green-600 font-medium text-sm hover:underline">
+              Write a Review
+            </button>
           </div>
 
           {/* EMPTY */}

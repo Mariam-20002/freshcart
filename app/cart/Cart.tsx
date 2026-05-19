@@ -109,6 +109,10 @@ export default function Cart() {
   const remaining = freeShippingTarget - totalPrice;
   const progress = Math.min((totalPrice / freeShippingTarget) * 100, 100);
 
+  const shippingPrice = totalPrice >= 500 ? 0 : 50;
+
+  const finalTotal = totalPrice + shippingPrice;
+
   return (
     <div className="container max-w-[1536px] mx-auto px-4 xl:px-6 min-h-screen py-10">
       {/* breadcrumb */}
@@ -419,7 +423,7 @@ export default function Cart() {
 
                   </div>
                 ) : (
-                  
+
                   <div className="bg-[#FFF8E8] border border-[#FDE7B0] rounded-[18px] px-4 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-full bg-[#FFE7B3] flex items-center justify-center shrink-0">
@@ -454,10 +458,17 @@ export default function Cart() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-[#6B7280] text-[16px]">Shipping</span>
+                    <span className="text-[#6B7280] text-[16px]">
+                      Shipping
+                    </span>
 
-                    <span className="text-[#16A34A] text-[15px] font-semibold">
-                      FREE
+                    <span
+                      className={`text-[15px] font-semibold ${totalPrice >= 500
+                        ? "text-[#16A34A]"
+                        : "text-[#111827]"
+                        }`}
+                    >
+                      {totalPrice >= 500 ? "FREE" : "50 EGP"}
                     </span>
                   </div>
 
@@ -469,7 +480,7 @@ export default function Cart() {
 
                     <div className="text-right leading-none">
                       <span className="text-[26px] font-bold tracking-tight text-[#0F172A]">
-                        {data?.data?.totalCartPrice}
+                        {finalTotal}
                       </span>
 
                       <span className="text-[#9CA3AF] text-[12px] ml-1 font-medium">
