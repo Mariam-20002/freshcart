@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 FreshCart E-Commerce Application
 
-## Getting Started
+FreshCart is a modern e-commerce web application built with React.js and Next.js. The application provides a complete online shopping experience with authentication, product browsing, search, wishlist management, shopping cart functionality, and customer reviews.
 
-First, run the development server:
+## 🚀 Live Demo
+
+🔗 https://freshcart-one-peach.vercel.app/
+
+## ✨ Features
+
+- User Authentication
+- Product Listing
+- Product Details
+- Search Functionality
+- Shopping Cart
+- Wishlist Management
+- Product Reviews
+- Responsive Design
+- API Integration
+- Modern User Interface
+
+## 🛠️ Technologies Used
+
+### Frontend
+- React.js
+- Next.js
+- TypeScript
+- Tailwind CSS
+
+### Tools
+- Git
+- GitHub
+- VS Code
+- Postman
+
+### APIs
+- REST APIs
+
+## 🏗️ Project Architecture
+
+Built using Next.js App Router.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+app/
+├── products/
+├── cart/
+├── wishlist/
+├── login/
+├── register/
+├── profile/
+└── api/
+
+components/
+├── ui/
+├── products/
+├── cart/
+├── wishlist/
+└── reviews/
+
+lib/
+├── actions/
+├── api/
+└── utilities/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 What I Learned
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Building scalable React applications
+- Working with Next.js App Router
+- API integration and data fetching
+- State management
+- Responsive web design
+- Creating reusable UI components
+- Debugging and problem solving
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👩‍💻 Author
 
-## Learn More
+**Mariam Mohammed Abdelhakim**
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- LinkedIn: https://www.linkedin.com/in/mariam-mohammed-abdelhakim
+- GitHub: https://github.com/Mariam-20002
