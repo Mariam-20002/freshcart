@@ -1,12 +1,12 @@
-# 🛒 FreshCart E-Commerce Application
+#  FreshCart E-Commerce Application
 
 FreshCart is a modern e-commerce web application built with React.js and Next.js. The application provides a complete online shopping experience with authentication, product browsing, search, wishlist management, shopping cart functionality, and customer reviews.
 
-## 🚀 Live Demo
+##  Live Demo
 
 🔗 https://freshcart-one-peach.vercel.app/
 
-## ✨ Features
+##  Features
 
 - User Authentication
 - Product Listing
@@ -19,7 +19,7 @@ FreshCart is a modern e-commerce web application built with React.js and Next.js
 - API Integration
 - Modern User Interface
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 ### Frontend
 - React.js
@@ -36,7 +36,7 @@ FreshCart is a modern e-commerce web application built with React.js and Next.js
 ### APIs
 - REST APIs
 
-## 🏗️ Project Architecture
+##  Project Architecture
 
 Built using Next.js App Router.
 
@@ -63,7 +63,7 @@ lib/
 └── utilities/
 ```
 
-## 🎯 What I Learned
+##  What I Learned
 
 - Building scalable React applications
 - Working with Next.js App Router
@@ -73,7 +73,7 @@ lib/
 - Creating reusable UI components
 - Debugging and problem solving
 
-## 👩‍💻 Author
+##  Author
 
 **Mariam Mohammed Abdelhakim**
 
